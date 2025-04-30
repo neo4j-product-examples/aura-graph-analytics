@@ -1,4 +1,4 @@
-# P2P Fraud
+# Resolving Fraudulent Entities in Peer-to-Peer Networks
 
 P2P fraud losses are skyrocketing. In 2023, 8% of banking customers reported being victims of P2P scams. Identifying malicious actors is crucial to protecting customers.
 
