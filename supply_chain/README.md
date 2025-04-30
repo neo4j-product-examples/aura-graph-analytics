@@ -1,4 +1,4 @@
-# Identifying Bottlenecks using Neo4j Aura Graph Analytics
+# Identifying Bottlenecks in a Supply Chain
 In this quick start you will:
 
 - Learn how to load data into AuraDB
