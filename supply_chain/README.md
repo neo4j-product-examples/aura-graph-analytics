@@ -1,4 +1,4 @@
-# Identifying Bottlenecks in a Supply Chain
+# Testing Supply Chain Resiliency 
 In this quick start you will:
 
 - Learn how to load data into AuraDB
