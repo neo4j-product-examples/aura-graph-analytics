@@ -20,7 +20,7 @@ Using [Aura Graph Analytics](https://docs.google.com/presentation/d/1jv99yyIbG6Q
 We are going to be working in a google colab notebook, but you can run this in any python environment. First we need to install and load the necessary packages:
 
 ```
-!pip install graphdatascience
+!pip install graphdatascience==1.15a2
 ```
 
 ```python
@@ -47,33 +47,29 @@ CLIENT_ID = userdata.get("CLIENT_ID")
 CLIENT_SECRET = userdata.get("CLIENT_SECRET")
 TENANT_ID = userdata.get("TENANT_ID")
 
-
-# Neo4j Database Connection Info
-SUPPLIER_URI = userdata.get("SUPPLIER_URI")
-NEO4J_USER = userdata.get("NEO4J_USER")
-SUPPLIER_PASSWORD = userdata.get("SUPPLIER_PASSWORD")
 ```
 
 And then by establishing a session:
 
 ```python
+from graphdatascience.session import GdsSessions, AuraAPICredentials, AlgorithmCategory, CloudLocation
+from datetime import timedelta
+
 sessions = GdsSessions(api_credentials=AuraAPICredentials(CLIENT_ID, CLIENT_SECRET, TENANT_ID))
 
-name = "my-new-session"
+name = "my-new-session-sm"
 memory = sessions.estimate(
-    node_count=475,
-    relationship_count=1800,
-    algorithm_categories=[AlgorithmCategory.CENTRALITY],
+    node_count=20,
+    relationship_count=50,
+    algorithm_categories=[AlgorithmCategory.CENTRALITY, AlgorithmCategory.NODE_EMBEDDING],
 )
+cloud_location = CloudLocation(provider="gcp", region="europe-west1")
 
-db_connection_info = DbmsConnectionInfo(SUPPLIER_URI, NEO4J_USER, SUPPLIER_PASSWORD)
-
-# Create or retrieve a session
 gds = sessions.get_or_create(
     session_name=name,
     memory=memory,
-    db_connection=db_connection_info, # this is checking for a bolt server currently
     ttl=timedelta(hours=5),
+    cloud_location=cloud_location,
 )
 ```
 
@@ -116,6 +112,13 @@ nodes
 Using `graph.construct`, we can easily create a projection. 
 
 ```python
+graph_name = "subways"
+
+if gds.graph.exists(graph_name)["exists"]:
+    # Drop the graph if it exists
+    gds.graph.drop(graph_name)
+    print(f"Graph '{graph_name}' dropped.")
+    
 G = gds.graph.construct("subways", nodes, lines)
 ```
 
