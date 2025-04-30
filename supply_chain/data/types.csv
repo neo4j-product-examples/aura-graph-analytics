@@ -1,0 +1,32 @@
+,input_name,input_id,goes_into_name,goes_into_id,is_type_of_name,is_type_of_id
+2,EUV scanners,N20,,,Advanced photolithography equipment,N19
+3,ArF scanners,N21,,,Advanced photolithography equipment,N19
+4,ArF immersion scanners,N22,,,Advanced photolithography equipment,N19
+8,Electron-beam lithography tools,N29,,,Photomask (maskless) lithography equipment,N28
+9,Laser lithography tools,N30,,,Photomask (maskless) lithography equipment,N28
+15,Plasma CVD tools,N38,,,Chemical vapor deposition tools,N47
+16,Low-pressure CVD tools,N39,,,Chemical vapor deposition tools,N47
+17,High-temperature CVD tools,N40,,,Chemical vapor deposition tools,N47
+18,Atomic layer deposition tools,N41,,,Chemical vapor deposition tools,N47
+19,Physical vapor deposition tools,N42,,,Deposition tools,N36
+20,Rapid thermal processing tools,N43,,,Deposition tools,N36
+21,Tube-based diffusion and deposition tools,N44,,,Deposition tools,N36
+22,Electrochemical coating tools,N45,,,Deposition tools,N36
+25,Chemical vapor deposition tools,N47,,,Deposition tools,N36
+27,Dry etching and cleaning tools,N48,,,Etching and cleaning tools,N55
+28,Wet etching and cleaning tools,N49,,,Etching and cleaning tools,N55
+29,Conductor etching tools,N50,,,Dry etching and cleaning tools,N48
+30,Dielectric etching tools,N51,,,Dry etching and cleaning tools,N48
+48,Film and wafer measuring tools,N65,,,Wafer inspection equipment,N61
+49,Critical dimensions measurement tools,N66,,,Wafer inspection equipment,N61
+50,Defect inspection tools,N67,,,Wafer inspection equipment,N61
+51,General-purpose microscopy tools,N68,,,Wafer inspection equipment,N61
+56,Die attaching tools,N73,,,Bonding tools,N72
+57,Wire bonding tools,N74,,,Bonding tools,N72
+58,Advanced interconnect tools,N75,,,Bonding tools,N72
+85,Lead frames,N93,,,Packaging materials,N100
+86,Bond wires,N94,,,Packaging materials,N100
+87,Ceramic packages,N95,,,Packaging materials,N100
+88,Substrates,N96,,,Packaging materials,N100
+89,Encapsulation resins,N97,,,Packaging materials,N100
+90,Die attach materials,N98,,,Packaging materials,N100
