@@ -108,7 +108,6 @@ We do need to do some mild clean up to make sure that everything has the right n
 
 For the dataframe representing nodes:
 - The first column should be called `nodeId`
-- There can be no characters so we will have to drop the station names
 
 For the dataframe representing relationships:
 - We need to have columns called `sourceNodeId` and `targetNodeId`
