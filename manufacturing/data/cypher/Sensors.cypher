@@ -1,0 +1,10 @@
+MERGE (:Sensor {id: 101, sensor_type: 'temperature'});
+MERGE (:Sensor {id: 102, sensor_type: 'temperature'});
+MERGE (:Sensor {id: 103, sensor_type: 'temperature'});
+MERGE (:Sensor {id: 104, sensor_type: 'temperature'});
+MERGE (:Sensor {id: 105, sensor_type: 'temperature'});
+MERGE (:Sensor {id: 106, sensor_type: 'vibration'});
+MERGE (:Sensor {id: 107, sensor_type: 'vibration'});
+MERGE (:Sensor {id: 108, sensor_type: 'vibration'});
+MERGE (:Sensor {id: 109, sensor_type: 'vibration'});
+MERGE (:Sensor {id: 110, sensor_type: 'vibration'});
