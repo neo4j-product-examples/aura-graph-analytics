@@ -355,7 +355,7 @@
 1138,"Pork Tenderloin",7,12
 1139,"Whole Wheat Fresh Stack Crackers",78,19
 1142,"Crystal Rain Trigger Glass Cleaner",114,17
-1147,"Pop Up Notes, 3\"" X 3\""",87,17
+1147,"Pop Up Notes, 3\"" X 3\",87,17
 1148,"Oxy Power Degreaser Ultra Concentrated Dish Liquid",74,17
 1150,"AFC Sushi Spicy Salmon Roll Prepared In Store, Ready To Eat",13,20
 1156,"Semisweet Chocolate Super Cookie Chips",17,13
@@ -635,7 +635,7 @@
 1995,"Gel Cleaner Bleach",114,17
 1998,"Unsweet Peach Sparkling Water",115,7
 1999,"Organic Chicken Broth",69,15
-2002,"The \""World's Best\"" Veggie Burger",42,1
+2002,"The \World's Best\ Veggie Burger",42,1
 2004,"Calcium Gummies",47,11
 2010,"Thirsty Ultra Big Roll towel White Vsa",54,17
 2014,"Low Fat Kefir Cultured Milk Smoothie Lowfat Probiotic Blueberry",120,16
@@ -5766,7 +5766,7 @@
 18036,"Premium Horseradish",72,13
 18037,"Organic Sprouted Wheat Sesame Bagels",93,3
 18045,"Clean & Refresh Antibacterial Body Wash, Lavender & Twilight Jasmine",127,11
-18048,"Pretzel \""Shells\""",107,19
+18048,"Pretzel \""Shells\",107,19
 18049,"Thirst Quencher Caffeine Free Naturally Flavored Citrus Soda",77,7
 18052,"Distilled London Dry Gin",124,5
 18059,"Fruit and Nut Bar - Peanut Butter Chocolate Chip",3,19
@@ -6073,7 +6073,7 @@
 19041,"Chicken Flavor Cup Noodles",66,6
 19043,"Fresh Scent Dishwasher Detergent With Dawn",74,17
 19044,"Just Apple, Raspberry & Avocado Stage 2",92,18
-19046,"Banana & Mango Organic Yogurt & Fruit Snacks ",92,18
+19046,"Banana & Mango Organic Yogurt & Fruit Snacks",92,18
 19048,"Organic Butternut Squash",83,4
 19049,"Peeled Garlic",123,4
 19050,"Smoked Mussels",39,12
@@ -7460,7 +7460,7 @@
 23293,"Quinoa & Leeks with Chicken + Tarragon Organic Baby Food",92,18
 23296,"Blueberry on the Bottom Nonfat Greek Yogurt",120,16
 23304,"Organic Fire Roasted Red Pepper Dinner Sausage",106,12
-23307,"Sticky Notes 3\"" x 3\""",87,17
+23307,"Sticky Notes 3\"" x 3\",87,17
 23308,"Sensible Portions Veggie Straws Ranch 7oz",107,19
 23313,"Mac & Cheese",4,9
 23315,"Organic Cold Brew Coffee",26,7
@@ -10017,7 +10017,7 @@
 31373,"Macrobar Prolonged Powder Banana + Almond Butter",3,19
 31374,"Outshine Strawberry Fruit Bars",37,1
 31377,"Cheesecloth",10,17
-31378,"Traditional Size Corn Tortillas, 6\""",128,3
+31378,"Traditional Size Corn Tortillas, 6\",128,3
 31380,"Omeprazole Acid Reducer Tablets",70,11
 31382,"Mandarin Orange Sparkling  Water",115,7
 31384,"Refried Black Beans Low Fat",59,15
@@ -10461,7 +10461,7 @@
 32679,"Original Plain Yoghurt",120,16
 32684,"Grade A Organic Large Brown Eggs",86,16
 32689,"Romaine Hearts",123,4
-32690,"4.125\"" x 9.5 \"" White Envelopes",54,17
+32690,"4.125\ x 9.5 \ White Envelopes",54,17
 32691,"Vanilla Ice Cream",37,1
 32700,"Original Whipped Cream",53,16
 32701,"Roasted Seaweed Snacks Wasabi",50,19
@@ -12082,7 +12082,7 @@
 37693,"Classic Blend Vegan Shreds Cheese",21,16
 37696,"Strengthening Nail Polish Remover",132,11
 37698,"Sliced Pears In Heavy Syrup",99,15
-37704,"Organic Strawberry, Apple & Beet Greek Yogurt Baby Food ",92,18
+37704,"Organic Strawberry, Apple & Beet Greek Yogurt Baby Food",92,18
 37706,"Ground Mace",104,13
 37709,"Dairy Free Semi Sweet Baking Chips",17,13
 37710,"Trail Mix",125,19
@@ -12140,7 +12140,7 @@
 37908,"Pieces Peanut Butter Candy",45,19
 37910,"Diced Peppers",123,4
 37912,"Wheat Germ",17,13
-37915,"Cheese \""Forte\"" Ravioli",12,9
+37915,"Cheese \Forte\ Ravioli",12,9
 37917,"Orange Peach Mango",31,7
 37919,"Organic 2% Chocolate Milk",84,16
 37923,"Prosecco Sparkling Wine",134,5
@@ -14407,7 +14407,7 @@
 44980,"The Original Multi Grain Bread",112,3
 44987,"Heavy Whipping Cream",53,16
 44989,"Organic Seaweed Snack Sea Salt",66,6
-44990,"Complete Mint Flavor Satin Floss ",20,11
+44990,"Complete Mint Flavor Satin Floss",20,11
 44995,"Coconut Sorbet",37,1
 44996,"Keratin Oil Anti-Breakage Conditioner",22,11
 45000,"With Shrimp Ramen Noodles",4,9
@@ -14440,7 +14440,7 @@
 45081,"Gluten-Free Pancake Mix",130,14
 45082,"Honey Oat Crunch Trail Mix Crunchy Granola Bars",3,19
 45083,"Grassmilk Raw Sharp Cheddar Cheese",21,16
-45084,"Gelato Fudge Brownie ",37,1
+45084,"Gelato Fudge Brownie",37,1
 45089,"Jewish Rye & Pumpernickel Deli Swirl Bread",112,3
 45093,"Authentic Mexican Shredded Cheese",21,16
 45094,"Gluten Free Mild Whole Green Chiles",30,6
@@ -14519,7 +14519,7 @@
 45310,"Organic Peachy Green Tea",94,7
 45311,"Protein Bar Maple Sea Salt",100,21
 45312,"Clear Tone Pink Rosa Antiperspirant Deodorant",80,11
-45316,"\""Mokaccino\"" Milk + Blue Bottle Coffee Chocolate",45,19
+45316,"\Mokaccino\ Milk + Blue Bottle Coffee Chocolate",45,19
 45318,"Onion Flavored Rings",107,19
 45321,"Mini Corn Dogs",129,1
 45322,"Cherry Chocolate",57,14
@@ -14840,7 +14840,7 @@
 46327,"Raspberry Light & Fit Greek Yogurt",120,16
 46331,"Dark Chocolate Sea Salt Caramels",45,19
 46332,"Value Pack Breast Nuggets",34,1
-46336,"Sheer Extra Large All One Size 1 3/4\"" X 4\"" Value",118,11
+46336,"Sheer Extra Large All One Size 1 3/4\ X 4\ Value",118,11
 46339,"YoTot Apple Sweet Potato with Fruit & Veggies Organic Whole Milk Shutterfly Promo Organic Yogurt",92,18
 46341,"Spa Cuisine Butternut Squash Ravioli",38,1
 46346,"Sweet Potato Fries with Sea Salt",129,1
