@@ -1,4 +1,4 @@
-# Managing Risk in a Manufacturing Plant with Neo4j Graph Analytics
+# Managing Risk in a Manufacturing Plant
 
 This notebook shows how to model a manufacturing workflow in Neo4j and apply Graph Analytics to find structural risks, operational bottlenecks, and machine similarities.
 
