@@ -14,39 +14,36 @@ So how do we build a good recommendation engine? What techniques power these sys
 
 Using the data found [here](https://github.com/neo4j-product-examples/aura-graph-analytics/tree/main/better_recommendations), load in your data into an AuraDB instance that has Graph Analytics installed using these [cypher statements](https://github.com/neo4j-product-examples/aura-graph-analytics/tree/main/better_recommendations).
 
-Next, we are going to create a colab notebook that has everything we need to conduct our analysis. The rest of the tutorial will focus on what we can do using python. From here, you can follow along using the colab notebook in this repo.
+Next, we are going to use a local Jupyter notebook that has everything we need to conduct our analysis. Install the dependencies with `pip install -r requirements.txt`. The rest of the tutorial will focus on what we can do using python. From here, you can follow along using the notebook in this repo.
 
 Start by loading in the various packages
-
-```
-!pip install graphdatascience
-```
 
 ```py
 from graphdatascience.session import DbmsConnectionInfo, AlgorithmCategory, CloudLocation, GdsSessions, AuraAPICredentials
 from datetime import timedelta
 import pandas as pd
 import os
-from google.colab import userdata
+from dotenv import load_dotenv
 ```
 
 ### Authentication
 
-You must first generate your credentials in Neo4j Aura. Afterwards, you can store your credentials securely using **colab secrets**.
+You must first generate your credentials in Neo4j Aura. Afterwards, you can store your credentials securely using a `.env` file. Copy `.env.example` to `.env` and fill in your values. The notebook reads them with `python-dotenv`.
 
 ```py
-# For use in Google Colab
-# This crediential is the Organization ID
-TENANT_ID=userdata.get('TENANT_ID')
+load_dotenv()
 
-# These credentials were generated after the creation of the Aura Instance
-NEO4J_URI = userdata.get('RETAIL_URI')
-NEO4J_USERNAME = userdata.get('NEO4J_USER')
-NEO4J_PASSWORD = userdata.get('RETAIL_PASSWORD')
+# This credential is the Organization ID
+TENANT_ID = os.environ["TENANT_ID"]
 
 # These credentials were generated after the creation of the API Endpoint
-CLIENT_SECRET=userdata.get('CLIENT_SECRET')
-CLIENT_ID=userdata.get('CLIENT_ID')
+CLIENT_SECRET = os.environ["CLIENT_SECRET"]
+CLIENT_ID = os.environ["CLIENT_ID"]
+
+# These credentials were generated after the creation of the Aura Instance
+NEO4J_URI = os.environ["NEO4J_URI"]
+NEO4J_USERNAME = os.environ.get("NEO4J_USERNAME", "neo4j")
+NEO4J_PASSWORD = os.environ["NEO4J_PASSWORD"]
 ```
 
 ## Establishing a Session

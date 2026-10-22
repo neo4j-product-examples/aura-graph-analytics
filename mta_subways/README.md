@@ -12,29 +12,29 @@ Whether it’s passengers or products, understanding and adapting the paths thro
 
 ## Getting Started
 
-We are going to be working in a google colab notebook, but you can run this in any python environment. First we need to install and load the necessary packages:
-
-```
-!pip install graphdatascience
-```
+We are going to be working in a local Jupyter notebook. Install the dependencies with `pip install -r requirements.txt`, then load the necessary packages:
 
 ```py
 from graphdatascience.session import GdsSessions, AuraAPICredentials, DbmsConnectionInfo, AlgorithmCategory
 from datetime import timedelta
 import pandas as pd
 import os
-from google.colab import userdata
+from dotenv import load_dotenv
 ```
 
 ## Creating a Session
 
-Next we will set up a session, first by loading in our secrets:
+Next we will set up a session, first by loading our secrets from a `.env` file (copy `.env.example` to `.env` and fill it in):
 
 ```py
-CLIENT_ID = userdata.get("CLIENT_ID")
-CLIENT_SECRET = userdata.get("CLIENT_SECRET")
-TENANT_ID = userdata.get("TENANT_ID")
+load_dotenv()
 
+# This credential is the Organization ID
+TENANT_ID = os.environ["TENANT_ID"]
+
+# These credentials were generated after the creation of the API Endpoint
+CLIENT_SECRET = os.environ["CLIENT_SECRET"]
+CLIENT_ID = os.environ["CLIENT_ID"]
 ```
 
 And then by establishing a session:
@@ -67,19 +67,15 @@ gds = sessions.get_or_create(
 
 One of the key advantages of Aura Graph Analytics is that you don’t need to store your data in AuraDB to use it. In our case, we will load in data from Snowflake into python dataframes. Let’s start by downloading the `snowflake-connector-python` package:
 
-```
-!pip install snowflake-connector-python
-```
-
 Then let’s create a connection to snowflake:
 
 ```py
 import pandas as pd
 import snowflake.connector
 
-SNOWFLAKE_USER = userdata.get("snowflake_user")
-SNOWFLAKE_PASSWORD = userdata.get("snowflake_password")
-SNOWFLAKE_ACCOUNT = userdata.get("snowflake_account")
+SNOWFLAKE_USER = os.environ["SNOWFLAKE_USER"]
+SNOWFLAKE_PASSWORD = os.environ["SNOWFLAKE_PASSWORD"]
+SNOWFLAKE_ACCOUNT = os.environ["SNOWFLAKE_ACCOUNT"]
 
 
 # Replace with your credentials
@@ -282,6 +278,6 @@ And with that, you can see how to run graph algorithms against any enterprise da
 
 ## What’s Next
 
-Now that you’ve got a solid grasp on modeling disruptions (whether that be on the subway or otherwise), head over to our [GitHub repo](https://github.com/neo4j-product-examples/aura-graph-analytics/tree/main/mta_subways) for step-by-step instructions on how to do it yourself with Neo4j Aura Graph Analytics. You’ll find a Colab notebook, the full dataset, and everything you need to get started. 
+Now that you’ve got a solid grasp on modeling disruptions (whether that be on the subway or otherwise), head over to our [GitHub repo](https://github.com/neo4j-product-examples/aura-graph-analytics/tree/main/mta_subways) for step-by-step instructions on how to do it yourself with Neo4j Aura Graph Analytics. You’ll find a Jupyter notebook, the full dataset, and everything you need to get started. 
 
 Prefer working in Snowflake? You can run the same example there using [Neo4j Graph Analytics for Snowflake](https://quickstarts.snowflake.com/guide/modeling-subway-disruptions-with-neo4j/index.html?index=..%2F..index#0).

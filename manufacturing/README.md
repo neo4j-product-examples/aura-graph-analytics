@@ -16,7 +16,7 @@ The analysis uses simulated manufacturing data loaded into Neo4j. There are two 
 
 **Python Environment**
 
-This demo is written to run in [Google Colab](https://colab.research.google.com/) and contains references to Colab features.  You may run it in any Python environment that has access to compute resources needed to execute the GDS algorithms.
+This demo runs in a local Jupyter notebook. Install the dependencies with `pip install -r requirements.txt` and put your credentials in a `.env` file (copy `.env.example` to `.env`).
 
 **Neo4j Graph Setup**
 
@@ -27,35 +27,33 @@ Using the Neo4j web UI do the following:
 
 ## Setting Up
 
-First we need to install the graphdatascience package and load all of our secrets
-
-```
-!pip install graphdatascience
-```
+First we need to import our dependencies and load all of our secrets from a `.env` file
 
 ```python
+import os
 from graphdatascience.session import GdsSessions, AuraAPICredentials, DbmsConnectionInfo, AlgorithmCategory
 from neo4j import GraphDatabase
 import pandas as pd
 from datetime import timedelta
-from google.colab import userdata
+from dotenv import load_dotenv
 ```
 
-You must first generate your credentials in Neo4j Aura. Afterwards, you can store your credentials securely using **colab secrets**.
+You must first generate your credentials in Neo4j Aura. Afterwards, you can store your credentials securely using a `.env` file. Copy `.env.example` to `.env` and fill in your values. The notebook reads them with `python-dotenv`.
 
 ```python
-# This crediential is the Organization ID
-TENANT_ID=userdata.get('TENANT_ID')
+load_dotenv()
 
-# These credentials were generated after the creation of the Aura Instance
-NEO4J_URI = userdata.get('NEO4J_URI')
-NEO4J_USERNAME = userdata.get('NEO4J_USERNAME')
-NEO4J_PASSWORD = userdata.get('NEO4J_PASSWORD')
+# This credential is the Organization ID
+TENANT_ID = os.environ["TENANT_ID"]
 
 # These credentials were generated after the creation of the API Endpoint
-CLIENT_SECRET=userdata.get('CLIENT_SECRET')
-CLIENT_ID=userdata.get('CLIENT_ID')
-CLIENT_NAME=userdata.get('CLIENT_NAME')
+CLIENT_SECRET = os.environ["CLIENT_SECRET"]
+CLIENT_ID = os.environ["CLIENT_ID"]
+
+# These credentials were generated after the creation of the Aura Instance
+NEO4J_URI = os.environ["NEO4J_URI"]
+NEO4J_USERNAME = os.environ.get("NEO4J_USERNAME", "neo4j")
+NEO4J_PASSWORD = os.environ["NEO4J_PASSWORD"]
 ```
 
 #### Establishing a Session

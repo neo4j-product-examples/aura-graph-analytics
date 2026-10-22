@@ -10,11 +10,7 @@ The data can be found in the `raw_data` subdirectory of this project. It is a du
 
 ## Set Up
 
-First we need to install the `graphdatascience` package:
-
-```python
-!pip install graphdatascience neo4j
-```
+First we need to install the dependencies with `pip install -r requirements.txt`, then import the packages we need:
 
 And load them:
 
@@ -23,20 +19,25 @@ from graphdatascience.session import GdsSessions, AuraAPICredentials, DbmsConnec
 from datetime import timedelta
 import pandas as pd
 import os
-from google.colab import userdata
+from dotenv import load_dotenv
 ```
 
-Finally, our secrets:
+Finally, our secrets, loaded from a `.env` file (copy `.env.example` to `.env` and fill it in):
 
 ```python
-CLIENT_ID = userdata.get("CLIENT_ID")
-CLIENT_SECRET = userdata.get("CLIENT_SECRET")
-TENANT_ID = userdata.get("TENANT_ID")
+load_dotenv()
+
+# This credential is the Organization ID
+TENANT_ID = os.environ["TENANT_ID"]
+
+# These credentials were generated after the creation of the API Endpoint
+CLIENT_SECRET = os.environ["CLIENT_SECRET"]
+CLIENT_ID = os.environ["CLIENT_ID"]
 
 # Neo4j Database Connection Info
-FRAUD_URI = userdata.get("fd_uri")
-NEO4J_USER = userdata.get("NEO4J_USER")
-FRAUD_PASSWORD = userdata.get("fd_pass")
+FRAUD_URI = os.environ["NEO4J_URI"]
+NEO4J_USER = os.environ.get("NEO4J_USERNAME", "neo4j")
+FRAUD_PASSWORD = os.environ["NEO4J_PASSWORD"]
 ```
 
 ## Establishing a Session

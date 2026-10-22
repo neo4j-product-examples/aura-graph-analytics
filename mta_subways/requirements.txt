@@ -1,0 +1,5 @@
+graphdatascience>=2.2
+pandas>=2.0
+snowflake-connector-python
+ipykernel
+python-dotenv>=1.0

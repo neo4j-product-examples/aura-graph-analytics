@@ -4,27 +4,25 @@ The Future of healthcare is personalized. Currently, $1.5 trillion dollars goes 
 
 ## Setting up the Environment
 
-First install and load the packages:
-
-```
-!pip install graphdatascience
-```
-
-```
-!pip install --upgrade numpy
-```
+First install the dependencies with `pip install -r requirements.txt`, then load the packages:
 
 ```python
+import os
 import pandas as pd
-from google.colab import userdata
+from dotenv import load_dotenv
 ```
 
-Then load in our credentials for Aura:
+Then load in our credentials for Aura from a `.env` file (copy `.env.example` to `.env` and fill it in):
 
 ```python
-CLIENT_ID = userdata.get("CLIENT_ID")
-CLIENT_SECRET = userdata.get("CLIENT_SECRET")
-TENANT_ID = userdata.get("TENANT_ID")
+load_dotenv()
+
+# This credential is the Organization ID
+TENANT_ID = os.environ["TENANT_ID"]
+
+# These credentials were generated after the creation of the API Endpoint
+CLIENT_SECRET = os.environ["CLIENT_SECRET"]
+CLIENT_ID = os.environ["CLIENT_ID"]
 ```
 
 And then we create a session:
