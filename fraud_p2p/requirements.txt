@@ -1,0 +1,5 @@
+graphdatascience>=2.2
+neo4j>=5.28
+pandas>=2.0
+ipykernel
+python-dotenv>=1.0

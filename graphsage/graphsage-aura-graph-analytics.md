@@ -68,7 +68,7 @@ Training and predicting both need somewhere to run, isolated from the database s
 
 The `graphdatascience` Python client needs Python 3.10 or newer as of version 1.18. If you're on an older Python (3.9 or earlier), `pip install` will silently cap you at 1.17 instead of erroring, which is easy to miss. Check with `python3 --version` before you start, and set up your virtual environment with a current Python if needed.
 
-This post uses `graphdatascience` 2.0 (installed here as the `2.0a2` pre-release with `pip install --pre graphdatascience==2.0a2`). The 2.0 line drops the `gds.v2` prefix entirely: what used to be preview functionality under `gds.v2.*` is now just `gds.*`, and the old untyped, camelCase-dictionary endpoints are gone. If you're upgrading from a 1.x notebook, the biggest catches are `gds.v2.graph_sage.train(...)` becoming `gds.graph_sage.train(...)`, `gds.graph.nodeProperties.write(...)` becoming `gds.graph.node_properties.write(...)`, and any `**config` style calls (like the old `gds.knn.filtered.mutate(nodeProperties=..., sourceNodeFilter=...)`) needing to switch to typed, snake_case keyword arguments.
+This post uses `graphdatascience` 2.0 (the code here was checked against 2.2, installed with `pip install graphdatascience`). The 2.0 line drops the `gds.v2` prefix entirely: what used to be preview functionality under `gds.v2.*` is now just `gds.*`, and the old untyped, camelCase-dictionary endpoints are gone. If you're upgrading from a 1.x notebook, the biggest catches are `gds.v2.graph_sage.train(...)` becoming `gds.graph_sage.train(...)`, `gds.graph.nodeProperties.write(...)` becoming `gds.graph.node_properties.write(...)`, and any `**config` style calls (like the old `gds.knn.filtered.mutate(nodeProperties=..., sourceNodeFilter=...)`) needing to switch to typed, snake_case keyword arguments.
 
 ```python
 import os
@@ -210,7 +210,7 @@ model, train_result = gds.graph_sage.train(
 )
 ```
 
-> This uses the GDS Python client's typed API, which takes typed, snake_case parameters and returns typed result objects instead of the older CamelCase, dictionary-style API. Training and prediction both need to go through `gds.graph_sage.*` together; mixing the older `gds.beta.graphSage.train()` with the model catalog lookups below can register the model somewhere `gds.model.list()`/`gds.model.get()` don't see it.
+> This uses the GDS Python client's typed API, which takes typed, snake_case parameters and returns typed result objects instead of the older CamelCase, dictionary-style API. Training and prediction both need to go through `gds.graph_sage.*` together; mixing the older `gds.beta.graphSage.train()` with the model catalog lookups below can register the model somewhere `gds.model.list()`/`gds.graph_sage.get()` don't see it.
 
 The catalog is what makes a trained model reusable: you can inspect what's registered, confirm how it was trained, and check it's ready to use. Here's what's in the registry:
 

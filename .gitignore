@@ -173,3 +173,8 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 .DS_Store
+
+# Private keys
+*.p8
+rsa_key*
+*.pem
