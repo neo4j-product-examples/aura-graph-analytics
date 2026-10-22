@@ -63,6 +63,26 @@ gds = sessions.get_or_create(
 
 ## Loading in Data from Snowflake
 
+We connect to Snowflake with key-pair authentication, so there is no password or MFA code to type. You generate the key yourself, then register the public half with your Snowflake user (one-time setup).
+
+1. Generate a private key and its public key:
+
+```bash
+mkdir -p ~/.snowflake && openssl genrsa 2048 | openssl pkcs8 -topk8 -inform PEM -out ~/.snowflake/rsa_key.p8 -nocrypt
+openssl rsa -in ~/.snowflake/rsa_key.p8 -pubout -out ~/.snowflake/rsa_key.pub
+```
+
+   Add `-v2 aes-256-cbc` and drop `-nocrypt` if you want the private key protected with a passphrase, then set `SNOWFLAKE_PRIVATE_KEY_PASSPHRASE` in `.env`.
+
+2. Register the public key. Copy the contents of `rsa_key.pub` *without* the `-----BEGIN/END PUBLIC KEY-----` lines and run this in a Snowflake worksheet (you need a role that can alter your user, such as `SECURITYADMIN`, or ask your admin):
+
+```sql
+ALTER USER <your_user> SET RSA_PUBLIC_KEY='MIIBIjANBgkq...';
+```
+
+3. Put `SNOWFLAKE_USER`, `SNOWFLAKE_ACCOUNT` and `SNOWFLAKE_PRIVATE_KEY_PATH` in your `.env`. Keep the private key out of the repo: `.p8` files are gitignored.
+
+
 *Note: [Use the csvs found here to follow along](https://github.com/neo4j-product-examples/aura-graph-analytics/tree/main/mta_subways/data). Just load them into Snowflake or directly into your python environment.*
 
 One of the key advantages of Aura Graph Analytics is that you don’t need to store your data in AuraDB to use it. In our case, we will load in data from Snowflake into python dataframes. Let’s start by downloading the `snowflake-connector-python` package:
@@ -74,15 +94,19 @@ import pandas as pd
 import snowflake.connector
 
 SNOWFLAKE_USER = os.environ["SNOWFLAKE_USER"]
-SNOWFLAKE_PASSWORD = os.environ["SNOWFLAKE_PASSWORD"]
 SNOWFLAKE_ACCOUNT = os.environ["SNOWFLAKE_ACCOUNT"]
+# Path to your RSA private key (.p8) for key-pair authentication
+SNOWFLAKE_PRIVATE_KEY_PATH = os.path.expanduser(os.environ["SNOWFLAKE_PRIVATE_KEY_PATH"])
+# Only needed if you encrypted the private key with a passphrase
+SNOWFLAKE_PRIVATE_KEY_PASSPHRASE = os.environ.get("SNOWFLAKE_PRIVATE_KEY_PASSPHRASE") or None
 
 
-# Replace with your credentials
 conn = snowflake.connector.connect(
-    user= SNOWFLAKE_USER,
-    password=SNOWFLAKE_PASSWORD,
-    account=SNOWFLAKE_ACCOUNT,  
+    user=SNOWFLAKE_USER,
+    account=SNOWFLAKE_ACCOUNT,  # e.g. "xy12345.us-east-1"
+    authenticator="SNOWFLAKE_JWT",
+    private_key_file=SNOWFLAKE_PRIVATE_KEY_PATH,
+    private_key_file_pwd=SNOWFLAKE_PRIVATE_KEY_PASSPHRASE,
     warehouse='GDSONSNOWFLAKE',
     database='MTA',
     schema='PUBLIC',
