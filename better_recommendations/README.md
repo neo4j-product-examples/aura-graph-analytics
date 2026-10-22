@@ -167,8 +167,7 @@ relationshipProperties: {weight: weight}
 So all together that looks like:
 
 ```py
-if gds.graph.exists("copurchase")["exists"]:
-    gds.graph.drop("copurchase")
+gds.graph.drop("copurchase", fail_if_missing=False)
 
 query = """
 CALL {
@@ -191,7 +190,7 @@ RETURN gds.graph.project.remote(
 );
 """
 
-copurchase_graph, result = gds.graph.project(
+copurchase_graph, result = gds.graph.project.cypher(
     graph_name="copurchase",
     query=query
 )
@@ -226,12 +225,12 @@ In this case, the similarity between cheese and wine will largely be driven by t
 Enough talk, let's run the algorithm:
 
 ```py
-result = gds.nodeSimilarity.write(
+result = gds.node_similarity.write(
     copurchase_graph,
-    topK=10,
-    relationshipWeightProperty="weight",
-    writeRelationshipType="SIMILAR_TO",
-    writeProperty="score"
+    top_k=10,
+    relationship_weight_property="weight",
+    write_relationship_type="SIMILAR_TO",
+    write_property="score"
 )
 ```
 

@@ -221,7 +221,7 @@ gds.model.list()
 Fetch the trained model back from the catalog:
 
 ```python
-model = gds.model.get("customers")
+model = gds.graph_sage.get("customers")
 ```
 
 Write the embeddings from training back to your AuraDB. You'll use them later for KNN:

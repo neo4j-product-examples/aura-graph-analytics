@@ -1,5 +1,6 @@
-graphdatascience==2.0a2
+graphdatascience>=2.2
 neo4j>=5.28
 pandas>=2.0
 numpy>=1.26
 python-dotenv>=1.0
+ipykernel

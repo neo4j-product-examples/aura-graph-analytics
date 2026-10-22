@@ -7,7 +7,7 @@ The Future of healthcare is personalized. Currently, $1.5 trillion dollars goes 
 First install and load the packages:
 
 ```
-!pip install graphdatascience==1.15a2
+!pip install graphdatascience
 ```
 
 ```
@@ -166,9 +166,7 @@ Next we are going to quickly create a graph using `graph.construct`.
 ```python
 graph_name = "patients"
 
-if gds.graph.exists(graph_name)["exists"]:
-    # Drop the graph if it exists
-    gds.graph.drop(graph_name)
+gds.graph.drop(graph_name, fail_if_missing=False)
     print(f"Graph '{graph_name}' dropped.")
 
 G = gds.graph.construct(graph_name, nodes, relationships)
@@ -177,7 +175,7 @@ G = gds.graph.construct(graph_name, nodes, relationships)
 and see the results like so:
 
 ```python
-similarity = gds.nodeSimilarity.stream(
+similarity = gds.node_similarity.stream(
   G
 )
 
@@ -205,9 +203,7 @@ Now, we create a new graph projection using the similarity scores:
 ```python
 graph_name = "patients_sim"
 
-if gds.graph.exists(graph_name)["exists"]:
-    # Drop the graph if it exists
-    gds.graph.drop(graph_name)
+gds.graph.drop(graph_name, fail_if_missing=False)
     print(f"Graph '{graph_name}' dropped.")
 
 G = gds.graph.construct(graph_name, nodes_sim, relationships_sim)

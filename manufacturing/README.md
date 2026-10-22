@@ -108,8 +108,7 @@ First, we project all Machine and Sensor nodes and their FEEDS_INTO and LOG rela
 ```python
 # Define the custom Cypher query for projecting the graph
 
-if gds.graph.exists("full")["exists"]:
-    gds.graph.drop("full")
+gds.graph.drop("full", fail_if_missing=False)
 
 query = """
 CALL {
@@ -128,7 +127,7 @@ RETURN gds.graph.project.remote(source, target, {
 """
 
 # Project the graph into GDS
-full_graph, result = gds.graph.project(
+full_graph, result = gds.graph.project.cypher(
     graph_name="full",
     query=query
 )
@@ -154,7 +153,7 @@ A single connected component for our domain is ideal; it suggests an integrated 
 **Expected result:** The simulated data is designed to form a single significant component, reflecting a unified workflow.
 
 ```python
-gds.wcc.write(full_graph, writeProperty='wcc')
+gds.wcc.write(full_graph, write_property='wcc')
 
 wcc_df = query_to_df(
     """
@@ -176,7 +175,7 @@ Each strongly connected component represents a set of machines with a directed p
 **Expected result:** Small cycles have been intentionally created between specific machines in the simulated data. You should detect these directed loops and confirm that material or flow can cycle back to earlier steps in the process.
 
 ```python
-gds.scc.write(full_graph, writeProperty="scc")
+gds.scc.write(full_graph, write_property="scc")
 
 scc_df = query_to_df(
     """
@@ -212,11 +211,11 @@ The highest-performing machines manage the most critical data flow.
 **Expected Result**:  Machine 20 has been set up as the processing hub for the simulated data, so it should be at the very top of the list.
 
 ```python
-gds.pageRank.write(
+gds.page_rank.write(
     full_graph,
-    writeProperty='pagerank',
-    maxIterations=20,
-    dampingFactor=0.85
+    write_property='pagerank',
+    max_iterations=20,
+    damping_factor=0.85
 )
 
 pr_df = query_to_df(
@@ -260,11 +259,11 @@ The results for FastRp are not immediately interpretable. However, machines with
 ```python
 # Run FastRP and write embeddings to each Machine node property 'embedding'
 print("Running FastRP embeddings…")
-res = gds.fastRP.write(
+res = gds.fast_rp.write(
     full_graph,
-    writeProperty='embedding',
-    embeddingDimension=16,
-    randomSeed=42
+    write_property='embedding',
+    embedding_dimension=16,
+    random_seed=42
 )
 
 
@@ -299,7 +298,7 @@ query = query="""
     """
 
 # Project the graph into GDS
-embeddings_graph, result = gds.graph.project(
+embeddings_graph, result = gds.graph.project.cypher(
     graph_name="embeddings",
     query=query
 )
@@ -321,8 +320,8 @@ Machines that were intentionally set up as redundant paths or part of the same p
 # Stream top-5 similar per machine
 knn_stream = gds.knn.stream(
     embeddings_graph,                 # your already-bound handle
-    nodeProperties=["embedding"],
-    topK=5
+    node_properties=["embedding"],
+    top_k=5
 )
 
 knn_df = pd.DataFrame(knn_stream)

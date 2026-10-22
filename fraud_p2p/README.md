@@ -13,7 +13,7 @@ The data can be found in the `raw_data` subdirectory of this project. It is a du
 First we need to install the `graphdatascience` package:
 
 ```python
-!pip install graphdatascience & neo4j
+!pip install graphdatascience neo4j
 ```
 
 And load them:
@@ -151,8 +151,8 @@ RETURN gds.graph.project.remote(source, target, {
 """
 
 # Project the graph into GDS
-gds.graph.drop("full")
-full, result = gds.graph.project(
+gds.graph.drop("full", fail_if_missing=False)
+full, result = gds.graph.project.cypher(
     graph_name="full",
     query=query
 )
@@ -163,7 +163,7 @@ full, result = gds.graph.project(
 Weakly Connected Components (WCC) is a practical and highly scalable community detection algorithm. It is also deterministic and very explainable. It defines a community simply as a set of nodes connected by a subset of relationship types in the graph. This makes WCC a good choice for formal community assignment in production fraud detection settings.
 
 ```python
-df = gds.wcc.write(full, writeProperty='wccId')
+df = gds.wcc.write(full, write_property='wccId')
 ```
 
 As these communities are meant to label underlying groups of individuals, if even one flagged account is in the community, we will label all user accounts in the group as fraud risks:

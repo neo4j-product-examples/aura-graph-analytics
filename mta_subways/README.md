@@ -162,9 +162,7 @@ Using `graph.construct`, we can easily create a projection.
 ```py
 graph_name = "subways"
 
-if gds.graph.exists(graph_name)["exists"]:
-    # Drop the graph if it exists
-    gds.graph.drop(graph_name)
+gds.graph.drop(graph_name, fail_if_missing=False)
     print(f"Graph '{graph_name}' dropped.")
     
 G = gds.graph.construct("subways", nodes, lines)
@@ -183,10 +181,10 @@ def get_shortest_path(source_station, target_station, G):
     source_node_id = station_crosswalk.get(source_station)
     target_node_id = station_crosswalk.get(target_station)
 
-    result = gds.shortestPath.dijkstra.stream(
+    result = gds.shortest_path.dijkstra.stream(
           G,
-          sourceNode=source_node_id,
-          targetNode=target_node_id
+          source_node=source_node_id,
+          target_nodes=target_node_id
       )
     node_ids = result['nodeIds'][0]
     id_to_station = {v: k for k, v in station_crosswalk.items()}
@@ -240,9 +238,7 @@ We then need to create a new projection without Herald Square
 ```py
 graph_name = "exclude"
 
-if gds.graph.exists(graph_name)["exists"]:
-    # Drop the graph if it exists
-    gds.graph.drop(graph_name)
+gds.graph.drop(graph_name, fail_if_missing=False)
     print(f"Graph '{graph_name}' dropped.")
 
 G = gds.graph.construct(graph_name, closed_nodes, closed_lines)
